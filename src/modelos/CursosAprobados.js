@@ -9,4 +9,4 @@ var EsquemaCursoAprobado = Schema ({
     notaAprobada: Number
 })
 
-module.exports = mongoose.model('cursosaprobados', EsquemaCursoAprobado)
+module.exports = mongoose.model('cursosaprobados', EsquemaCursoAprobado)    
