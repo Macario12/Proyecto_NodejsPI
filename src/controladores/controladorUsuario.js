@@ -1,6 +1,4 @@
 var usuario = require('../modelos/usuario');
-var path = require('path');
-var fs = require('fs');
 
 function mostrarUsuario(req,res){
     var idUsuario = req.params.id;
@@ -51,16 +49,16 @@ function CrearUsuario(req, res){
 }
 
 function actualizarUsuario(req,res){
-    var idUsuario = req.params.id
+    var idUsuario = req.params.id;
     var actualizar = req.body
 
     usuario.find({ $or: [
-        {id: actualizar.id}
+        {nombre: actualizar.nombre}
     ]}).exec((err,users)=>{
         var userInsert = false
 
         users.forEach((user)=>{
-            if(user && user._id != idUsuario) user_isset = true;
+            if(user && user._id != idUsuario) userInsert = true;
         })
 
         if(userInsert) return res.status(404).send({ message: 'Los datos ya estan en uso'})
