@@ -9,6 +9,7 @@ var rutasUsuario = require('./rutas/rutasUsuario')
 var rutasCurso = require('./rutas/rutasCurso')
 var rutasCUrsoAprobado = require('./rutas/rutaCursoAprobado')
 var rutasPensum = require('./rutas/rutasPensum')
+var rutasCatedratico = require('./rutas/rutaCatedratico')
 
 //MEDIOS
 
@@ -34,5 +35,6 @@ app.use('/api',rutasUsuario)
 app.use('/api', rutasCurso)
 app.use('/api', rutasCUrsoAprobado)
 app.use('/api', rutasPensum)
+app.use('/api', rutaCatedratico)
 
 module.exports = app
