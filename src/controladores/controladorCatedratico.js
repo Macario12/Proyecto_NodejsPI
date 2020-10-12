@@ -68,7 +68,7 @@ function actualizarCatedratico(req, res) {
 
             if (!catedraticoActualizar) return res.status(404).send({ message: 'no se ha podido realizar los cambios' })
 
-            return res.status(200).send({ curso: catedraticoActualizar })
+            return res.status(200).send({ catedratico: catedraticoActualizar })
         })
     })
 }
@@ -89,4 +89,3 @@ module.exports = {
     actualizarCatedratico,
     EliminarCatedratico
 }
-

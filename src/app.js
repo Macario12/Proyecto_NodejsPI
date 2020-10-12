@@ -9,7 +9,10 @@ var rutasUsuario = require('./rutas/rutasUsuario')
 var rutasCurso = require('./rutas/rutasCurso')
 var rutasCUrsoAprobado = require('./rutas/rutaCursoAprobado')
 var rutasPensum = require('./rutas/rutasPensum')
-var rutasCatedratico = require('./rutas/rutaCatedratico')
+var rutaCatedratico = require('./rutas/rutaCatedratico')
+var rutaCursoCatedratico = require('./rutas/rutaCursoCatedratico')
+var rutaComentario = require('./rutas/rutaComentario')
+var rutaPublicacion = require('./rutas/rutaPublicacion')
 
 //MEDIOS
 
@@ -36,5 +39,8 @@ app.use('/api', rutasCurso)
 app.use('/api', rutasCUrsoAprobado)
 app.use('/api', rutasPensum)
 app.use('/api', rutaCatedratico)
+app.use('/api', rutaCursoCatedratico)
+app.use('/api', rutaComentario)
+app.use('/api', rutaPublicacion)
 
 module.exports = app
