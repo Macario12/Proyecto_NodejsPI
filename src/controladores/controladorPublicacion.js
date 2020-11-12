@@ -1,4 +1,4 @@
-var Publicacion = require('../modelos/comentario')
+var Publicacion = require('../modelos/publicacion')
 
 function mostrarPublicacion(req, res) {
     var idpublicacion = req.params.id
@@ -19,7 +19,7 @@ function crearPublicacion(req, res) {
     var publicacion = Publicacion()
     var params = req.body
 
-    if (params.idPublicacion && params.mensaje && params.carnet && params.fecha && params.cursoCatedratico && params.codigoCurso && params.noCatedratico && params.tipo) {
+    if ( params.mensaje && params.carnet && params.fecha  && params.tipo) {
         publicacion.idPublicacion = params.idPublicacion
         publicacion.mensaje = params.mensaje
         publicacion.carnet = params.carnet

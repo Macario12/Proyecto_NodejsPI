@@ -4,6 +4,7 @@ let api = express.Router()
 
 api.post('/crearUsuario',controlador.CrearUsuario)
 api.post('/login', controlador.Login)
+api.post('/cambioContrasena', controlador.cambioContraseña)
 api.get('/usuario/:id', controlador.mostrarUsuario)
 api.get('/usuarios',controlador.mostrarUsuarios)
 

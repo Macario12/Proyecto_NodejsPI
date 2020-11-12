@@ -4,7 +4,7 @@ var esquema = mongoose.Schema;
 
 var usuarioesquema = esquema ({
 
-    carnet: Number,
+    carnet: String,
     nombre: String,
     apellidos: String,
     contraseña: String,

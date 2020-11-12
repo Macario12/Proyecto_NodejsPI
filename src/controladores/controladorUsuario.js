@@ -1,3 +1,4 @@
+
 var usuario = require('../modelos/usuario');
 
 function mostrarUsuario(req,res){
@@ -20,15 +21,15 @@ function CrearUsuario(req, res){
     var user = new usuario();
     var params = req.body;
 
-    if(params.carnet && params.nombre && params.apellidos && params.contraseña && params.correo){
+    if(params.carnet && params.nombre && params.apellidos && params.password && params.correo){
         user.carnet = params.carnet;
         user.nombre = params.nombre;
         user.apellidos = params.apellidos;
-        user.contraseña = params.contraseña;
+        user.contraseña = params.password;
         user.correo = params.correo;
 
         usuario.find({$or: [
-            {correo: user.correo.toLowerCase()}
+            {nombre: user.nombre.toLowerCase()}
         ]}).exec((err,users)=>{
             if(err) return res.status(500).send({message: 'Error en la peticion'});
             
@@ -84,12 +85,36 @@ function EliminarUsuario(req, res){
 function Login(req,res){
     var params = req.body
     var carnet = params.carnet
-    var contraseña = params.contraseña
+    var contraseña = params.password
 
-    usuario.findOne({carnet: carnet,contraseña: contraseña}, (err, user)=>{
+    usuario.findOne({$or:[{correo: carnet},{carnet:carnet}]}, (err, user)=>{
         if(err) return res.status(500).send({message: 'Error al logearse'});
         if(user){
-            return res.status(200).send({user})
+            usuario.findOne({contraseña:contraseña},(error,check)=>{
+
+                if(check){
+                    console.log("te has logueado")
+                    return res.status(200).send({user});
+                }else{
+                    return res.status(404).send({message: 'el usuario no se ha podido autenticar'});
+                }
+            })
+        }else{
+            return res.status(500).send({message: 'Error al logearse'});
+        }
+    })
+
+}
+
+function cambioContraseña(req,res){
+    var params = req.body
+    var carnet = params.carnet
+
+    usuario.findOne({$or:[{correo: carnet},{carnet:carnet}]}, (err, user)=>{
+        if(err) return res.status(500).send({message: 'Error no existe'});
+        if(user){
+            console.log("Existe Usuario")
+            return res.status(200).send({user});
         }else{
             return res.status(500).send({message: 'Error al logearse'});
         }
@@ -103,5 +128,6 @@ module.exports = {
     CrearUsuario,
     actualizarUsuario,
     EliminarUsuario,
+    cambioContraseña,
     Login
 }
